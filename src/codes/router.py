@@ -2,6 +2,8 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy import select, insert, delete
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from src.redis_config import get_redis
+
 from src.database import get_async_session
 from src.codes.models import referral_code
 from src.codes.schemas import CodeCreate
@@ -58,6 +60,10 @@ async def add_code(session: AsyncSession = Depends(get_async_session),
         stmt_referral_code = insert(referral_code).values(**new_code.dict(), user_id=user.id)
         await session.execute(stmt_referral_code)
         await session.commit()
+
+        redis = await get_redis()
+        await redis.set(f"user:{user.id}:referral_code", new_code.code, ex=60 * 60 * 24)
+
     except HTTPException:
         raise
     except Exception as e:

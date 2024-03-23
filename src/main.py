@@ -2,6 +2,8 @@ from fastapi_users import FastAPIUsers
 
 from fastapi import FastAPI
 
+from src.redis_config import get_redis
+
 from src.auth.base_config import auth_backend
 from src.auth.models import User
 from src.auth.manager import get_user_manager
@@ -17,6 +19,18 @@ fastapi_user = FastAPIUsers[User, int](
     get_user_manager,
     [auth_backend],
 )
+
+
+@app.on_event("startup")
+async def startup_event():
+    await get_redis()
+
+
+@app.on_event("shutdown")
+async def shutdown_event():
+    global redis
+    redis.close()
+    await redis.wait_closed()
 
 app.include_router(
     fastapi_user.get_auth_router(auth_backend),
