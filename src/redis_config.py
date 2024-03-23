@@ -1,8 +1,6 @@
 import aioredis
 from aioredis import Redis
-
-
-REDIS_URL = "redis://localhost"
+from config import REDIS_URL
 
 
 redis: Redis = None

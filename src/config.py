@@ -27,3 +27,6 @@ EMAIL_API_KEY = os.environ.get("EMAILHUNTER_APIKEY")
 
 # Secret
 SECRET = os.environ.get("SECRET")
+
+# Redis
+REDIS_URL = os.environ.get("REDIS_URL")
