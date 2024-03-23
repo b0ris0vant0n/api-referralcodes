@@ -1,23 +1,20 @@
-import pytest
 from conftest import client, async_session_maker
-from sqlalchemy import insert, select
+from sqlalchemy import insert
 from src.auth.models import user
+
 
 async def test_add_user():
     async with async_session_maker() as session:
         stmt = insert(user).values(username="testuser",
                                    email="testuser@mail.ru",
                                    hashed_password="$2b$12$OSrN/xQ3FV8vBnlbGsScJeWjZvJ.rOMAfz.wzgzDxwr4Z2yQwIAqC",
-                                   referrer_id=1,
+                                   referrer_id=2,
                                    is_active=True,
                                    is_superuser=False,
                                    is_verified=False,
                                    )
         await session.execute(stmt)
         await session.commit()
-
-        query = select(user)
-        result = await session.execute(query)
 
 
 def test_register():

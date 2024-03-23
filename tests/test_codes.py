@@ -1,4 +1,3 @@
-import pytest
 from conftest import client, async_session_maker
 from sqlalchemy import insert, select
 from src.codes.models import referral_code
