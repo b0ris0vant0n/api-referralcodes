@@ -4,7 +4,7 @@ from datetime import datetime
 from src.codes.models import referral_code
 import httpx
 from fastapi import HTTPException
-from config import EMAIL_API_KEY
+from src.config import EMAIL_API_KEY
 
 
 async def get_user_by_referral_code(referral_code_str: str,

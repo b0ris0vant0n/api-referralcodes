@@ -1,7 +1,6 @@
-from sqlalchemy import MetaData, Integer, String, TIMESTAMP, ForeignKey, Table, Column
+from sqlalchemy import Integer, String, TIMESTAMP, ForeignKey, Table, Column
 from src.auth.models import user
-
-metadata = MetaData()
+from src.database import metadata
 
 
 referral_code = Table(

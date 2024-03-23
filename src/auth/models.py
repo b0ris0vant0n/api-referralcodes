@@ -1,8 +1,7 @@
 from fastapi_users_db_sqlalchemy import SQLAlchemyBaseUserTable
-from sqlalchemy import MetaData, Integer, String, TIMESTAMP, Table, Column, Boolean
+from sqlalchemy import Integer, String, TIMESTAMP, Table, Column, Boolean
 from datetime import datetime
-from sqlalchemy.ext.declarative import DeclarativeMeta, declarative_base
-metadata = MetaData()
+from src.database import metadata, Base
 
 
 user = Table(
@@ -18,9 +17,6 @@ user = Table(
     Column("is_superuser", Boolean, default=False, nullable=False),
     Column("is_verified", Boolean, default=False, nullable=False),
 )
-
-
-Base: DeclarativeMeta = declarative_base()
 
 
 class User(SQLAlchemyBaseUserTable[int], Base):

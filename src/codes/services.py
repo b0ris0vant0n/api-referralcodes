@@ -1,7 +1,7 @@
 import secrets
 import string
 from datetime import datetime, timedelta
-from config import REFERRALS_CODE_VALIDITY, REFERRALS_CODE_LENGTH
+from src.config import REFERRALS_CODE_VALIDITY, REFERRALS_CODE_LENGTH
 
 
 def generate_random_code(length=REFERRALS_CODE_LENGTH):

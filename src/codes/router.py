@@ -2,10 +2,10 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy import select, insert, delete
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from database import get_async_session
+from src.database import get_async_session
 from src.codes.models import referral_code
 from src.codes.schemas import CodeCreate
-from src.auth.auth import auth_backend
+from src.auth.base_config import auth_backend
 from src.auth.models import User
 from src.auth.manager import get_user_manager
 

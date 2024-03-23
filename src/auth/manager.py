@@ -6,11 +6,12 @@ from sqlalchemy.exc import IntegrityError
 from fastapi_users import exceptions as fastapi_users_exceptions
 
 from src.auth.models import User
-from database import get_user_db, get_async_session
+from src.auth.utils import get_user_db
+from src.database import get_async_session
 from src.auth.schemas import UserCreate
 from src.auth.services import get_user_by_referral_code, verify_email
 from sqlalchemy.ext.asyncio import AsyncSession
-from config import SECRET
+from src.config import SECRET
 
 
 class UserManager(IntegerIDMixin, BaseUserManager[User, int]):

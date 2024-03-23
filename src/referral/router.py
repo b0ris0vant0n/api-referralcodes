@@ -3,7 +3,7 @@ from fastapi import APIRouter, Depends
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from database import get_async_session
+from src.database import get_async_session
 from src.auth.models import User
 from src.referral.schemas import Referral
 
