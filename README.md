@@ -8,9 +8,10 @@
 
 ## Допонительно реализовано:
 - использование emailhunter.co для проверки указанного email адреса;
+- кеширование реферальных кодов с использованием Redis. 
 
 
-### Написано на Python с использованием библиотек: FastAPI, FastAPIUsers, uvicorn, sqlalchemy, pydantic.
+### Написано на Python с использованием библиотек: FastAPI, FastAPIUsers, uvicorn, sqlalchemy, pydantic, Redis
 
 Для работы приложения нужно создать и заполнить файл .env по примеру .env.example
 
