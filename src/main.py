@@ -2,7 +2,7 @@ from fastapi_users import FastAPIUsers
 
 from fastapi import FastAPI
 
-from src.redis_config import get_redis
+from src.redis_config import get_redis, close_redis
 
 from src.auth.base_config import auth_backend
 from src.auth.models import User
@@ -28,9 +28,8 @@ async def startup_event():
 
 @app.on_event("shutdown")
 async def shutdown_event():
-    global redis
-    redis.close()
-    await redis.wait_closed()
+    await close_redis()
+
 
 app.include_router(
     fastapi_user.get_auth_router(auth_backend),
